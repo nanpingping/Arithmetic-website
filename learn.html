@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+
+  <title>学习模式</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/btn.css">
+  <link rel="stylesheet" href="css/Rank.css">
+  <link rel="stylesheet" href="css/Skill-ppt-btn.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/Rank.js"></script>
+  <script src="js/btn-control.js"></script>
+  <script src="js/ppt-control.js"></script>
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" media="screen" href="deck.js-latest/core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="deck.js-latest/extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="deck.js-latest/extensions/menu/deck.menu.css">
+  <link rel="stylesheet" media="screen" href="deck.js-latest/extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" media="screen" href="deck.js-latest/extensions/status/deck.status.css">
+  <link rel="stylesheet" media="screen" href="/deck.js-latest/extensions/scale/deck.scale.css">
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="deck.js-latest/themes/style/web-2.0.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="deck.js-latest/themes/transition/horizontal-slide.css">
+
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="deck.js-latest/core/print.css">
+
+  <!-- Required Modernizr file -->
+  <script src="deck.js-latest/modernizr.custom.js"></script>
+</head>
+<body>
+    
+  <div class="nav">
+    <a href="index.html" id="back"><span class="go_back">Back</span></a>
+	 <h2>学习模式</h2>
+	 <header>
+  <input class="event" type="checkbox" id="event"/>
+  <label class="target" for="event"><i></i></label>
+    <nav><a href="index.html">首页</a><a href="tream.html">竞赛</a><a href="#">排行榜</a><a href="login.html">注销</a><a href="calculator.html">计算器</a></nav>
+</header>
+  </div>
+  <div class="" style="height: 90px;"></div>
+  <div class="main">
+    <div class="deck">
+      <div class="deck-container">
+        <!-- A button to Video -->
+        <button class="video-btn"><a href="box.html">动画演示</a></button>
+
+        <!-- Begin slides. Just make elements with a class of slide. -->
+    
+        <section class="slide">
+		  <br>
+		  <br>
+          <h3>&nbsp;&nbsp;&nbsp;&nbsp;立方体，也称正方体，是由6个正方形面组成的正多面体，故又称正六面体。它有12条边和8个顶点。其中正方体是特殊的长方体。</h3>
+	    <img src="img/box1.jpg" alt=""/> 
+		  </section>
+    
+        <section class="slide">
+		  <br><br>
+          <h2>正方体的表面积公式<br></h2>
+		  <h3>S=6（a²）</h3>
+		  <h3>公式描述：公式中a为正方体的棱长，S为正方体的表面积。</h3>
+        </section>
+    
+        <section class="slide">
+		  <br><br>
+          <h2>求解思路:<br></h2>
+		  <h3>将立体的图形展开可以直观的得到图形的表面积<br></h3>
+		  <h3>这也是锻炼空间立体想象能力的好方法。<br></h3>
+        </section>
+    
+        <button class="game-btn"><a href="box.html">进入体验</a></button>
+        <!-- End slides. -->
+    
+        <!-- Begin extension snippets. Add or remove as needed. -->
+    
+        <!-- deck.navigation snippet -->
+        <div aria-role="navigation">
+          <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+          <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+        </div>
+    
+        <!-- deck.status snippet -->
+        <p class="deck-status" aria-role="status">
+          <span class="deck-status-current"></span>
+          /
+          <span class="deck-status-total"></span>
+        </p>
+    
+        <!-- deck.goto snippet -->
+        <form action="." method="get" class="goto-form">
+          <label for="goto-slide">Go to slide:</label>
+          <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+          <datalist id="goto-datalist"></datalist>
+          <input type="submit" value="Go">
+        </form>
+        
+        <!-- End extension snippets. -->
+      </div>
+    </div>
+  </div>
+  
+<div class="Rank">
+  <ul class="Rank-main">
+      
+  </ul>
+</div>
+  
+
+<!-- Required JS files. -->
+<script src="deck.js-latest/jquery.min.js"></script>
+<script src="deck.js-latest/core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="deck.js-latest/extensions/menu/deck.menu.js"></script>
+<script src="deck.js-latest/extensions/goto/deck.goto.js"></script>
+<script src="deck.js-latest/extensions/status/deck.status.js"></script>
+<script src="deck.js-latest/extensions/navigation/deck.navigation.js"></script>
+<script src="deck.js-latest/extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+  });
+</script>
+
+</body>
+</html>

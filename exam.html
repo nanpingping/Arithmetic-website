@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/Rank.css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/quiz.js"></script>
+<script type="text/javascript">
+	
+var init={'questions':[{'question':'4 - ( 2 + 5/3 ) + 3 = ','answers':['3`1/3','3','3`2/3','2'],'correctAnswer':1},{'question':'( 44 * 33 ) ÷ 23 = ','answers':['63`3/23','63','63`2/3','63`5/23'],'correctAnswer':1},{'question':'22 * 36 =  ','answers':['792','790','792','820'],'correctAnswer':1},{'question':'( 18 - 15 ) ÷ 10/7 * 20 = ','answers':['42','43','45','20'],'correctAnswer':1},{'question':'( 7 ÷ 3 ) * 9 =','answers':['3`1/3','7','21','28'],'correctAnswer':3},{'question':'( 17/1 * 6 ) * 17 * 6 =','answers':['17','6','1','7`23/136'],'correctAnswer':3},{'question':'52 * ( 80/25 * 80 ) - 24 = ','answers':['1328','13288','13388','13888'],'correctAnswer':2},{'question':'26 - 18 * ( 18 - 25 ) = ','answers':['132','152','155','122'],'correctAnswer':2},{'question':'54 * ( 141 ÷ 9 ) = ','answers':['844','846','866','845'],'correctAnswer':2},{'question':'54/14 ÷ 137 = ','answers':['27/959','29/959','53/959','27/955'],'correctAnswer':1}]};
+
+	
+	
+$(function(){
+	$('#quiz-container').jquizzy({
+        questions: init.questions
+    });
+});
+</script>
+<script type="text/javascript">
+ var maxtime = 6 * 60; // 
+      function CountDown() {
+        if (maxtime >= 0) {
+          minutes = Math.floor(maxtime / 60);
+          seconds = Math.floor(maxtime % 60);
+          msg = "距离结束还有" + minutes + "分" + seconds + "秒";
+          document.all["timer"].innerHTML = msg;
+          if (maxtime == 3 * 60)alert("距离结束仅剩5分钟");
+            --maxtime;
+        } else{
+          clearInterval(timer);
+          alert("时间到，结束!");
+        }
+		
+      }
+       timer = setInterval("CountDown()", 1000);  
+ </script>
+</head>
+
+<body>
+<div class="nav"> <a href="exam_choice.html" id="back"><span class="go_back">Back</span></a> 
+	<header>
+  <input class="event" type="checkbox" id="event"/>
+  <label class="target" for="event"><i></i></label>
+    <nav><a href="index.html">首页</a><a href="tream.html">竞赛</a><a href="#">排行榜</a><a href="login.html">注销</a><a href="calculator.html">计算器</a></nav>
+</header>	
+</div>
+<div class="main">
+  <h1>四则运算</h1>
+  <div class="main_top">
+    <div id="word">四则运算是算术的根本,<br>
+      你能否很好的完成呢？<br>
+    </div>
+    <span id="timer" style="margin-left: 100px;"/>
+  </div>
+  <!-- 代码 开始 -->
+  <div class="demo">
+    <div id="quiz-container"></div>
+  </div>
+  <!-- 代码 结束 --> 
+</div>
+
+</body>
+</html>

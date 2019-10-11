@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>小数转百分数测试</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/Rank.css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/quiz.js"></script>
+<script type="text/javascript">
+	
+var init={'questions':[{'question':'0.01 = ','answers':['1%','0.1%','0.01%','10%'],'correctAnswer':1},{'question':'0.29 = ','answers':['29%','2.9%','0.29%','0.0029%'],'correctAnswer':1},{'question':'0.358 = ','answers':['35.8%','3.58%','0.358%','358%'],'correctAnswer':1},{'question':'0.09 = ','answers':['9%','0.9%','0.09%','90%'],'correctAnswer':1},{'question':'0.999 = ','answers':['0.9%','0.99%','99.9%','9.99%'],'correctAnswer':3},{'question':'0.8745 = ','answers':['8.745%','874.5%','87.45%','0.87%'],'correctAnswer':3},{'question':'1 = ','answers':['10%','100%','1%','0.01%'],'correctAnswer':2},{'question':'0.555 = ','answers':['5%','55.5%','5.5%','55%'],'correctAnswer':2},{'question':'0.56789 = ','answers':['56%','56.789%','5.67%','567.89%'],'correctAnswer':2},{'question':'0.34 = ','answers':['34%','3.4%','0.34%','0.3%'],'correctAnswer':1}]};
+
+	
+	
+$(function(){
+	$('#quiz-container').jquizzy({
+        questions: init.questions
+    });
+});
+</script>
+<script type="text/javascript">
+ var maxtime = 6 * 60; // 
+      function CountDown() {
+        if (maxtime >= 0) {
+          minutes = Math.floor(maxtime / 60);
+          seconds = Math.floor(maxtime % 60);
+          msg = "距离结束还有" + minutes + "分" + seconds + "秒";
+          document.all["timer"].innerHTML = msg;
+          if (maxtime == 3 * 60)alert("距离结束仅剩3分钟");
+            --maxtime;
+        } else{
+          clearInterval(timer);
+          alert("时间到，结束!");
+        }
+		
+      }
+       timer = setInterval("CountDown()", 1000);  
+ </script>
+</head>
+
+<body>
+<div class="nav"> <a href="#" id="back"><span class="go_back">Back</span></a> 
+	<header>
+  <input class="event" type="checkbox" id="event"/>
+  <label class="target" for="event"><i></i></label>
+    <nav><a href="index.html">首页</a><a href="tream.html">竞赛</a><a href="#">排行榜</a><a href="login.html">注销</a><a href="calculator.html">计算器</a></nav>
+</header>	
+</div>
+<div class="main">
+  <h1>小数转百分数运算</h1>
+  <div class="main_top">
+    <div id="word">小数与百分数之间的转换也很重要,<br>
+      你能否很好的完成呢？<br>
+    </div>
+    <span id="timer" style="margin-left: 100px;"/>
+  </div>
+  <!-- 代码 开始 -->
+  <div class="demo">
+    <div id="quiz-container"></div>
+  </div>
+  <!-- 代码 结束 --> 
+</div>
+
+</body>
+</html>

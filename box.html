@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ThreeJS</title>
+
+<style>
+	body { margin: 0; }
+	canvas { width: 100%; height: 100% }
+	
+	button
+	{
+		width:10%;
+		height:5%;
+		position:absolute;
+		top:10%;
+		left:10%;
+	}
+</style>
+</head>
+
+<body>
+	<button id="click">Open/Close</button>
+	<script src="js/three.js"></script>
+    <script src="js/OrbitControls.js"></script>
+    <script>
+		var scene = new THREE.Scene();
+		var camera = new THREE.PerspectiveCamera( 50, window.innerWidth/window.innerHeight, 0.1, 1000 );
+
+		var renderer = new THREE.WebGLRenderer();
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+		/*
+		var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+		var material = new THREE.MeshPhongMaterial({color:0x66FFFF});
+		var cube = new THREE.Mesh( geometry, material );
+		var edges = new THREE.EdgesGeometry( geometry );
+		var line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
+		var parent_1 = new THREE.Object3D();
+		parent_1.add(line);
+		parent_1.add(cube);
+		//scene.add(parent_1);
+		*/	
+		var light = new THREE.PointLight( 0xffffff, 1, 0 );
+		light.position.set( 50, 50, 50 );
+		scene.add( light );
+		
+		var light_1 = new THREE.AmbientLight( 0x404040 );
+		scene.add( light_1 );
+		
+		var parent = new THREE.Object3D();
+		var planes = new Array();
+		var stepRot = Math.PI/2/60/5;
+		var size = 2;
+		var haveRotated = Boolean(false);
+		var isRotating = Boolean(false);
+		createPlanes();
+		scene.add(parent);
+		
+		var cameraController = new THREE.OrbitControls(camera,renderer.domElenment);
+		cameraController.addEventListener('change',function(){
+			renderer.render(scene,camera);							
+		},false);
+
+		scene.background = new THREE.Color(0x333333);
+		camera.position.z = 10;
+		renderer.render( scene, camera );
+		
+		var animate = function () {
+			//requestAnimationFrame( animate );
+
+			//cube.rotation.x += 0.01;
+			//cube.rotation.y += 0.01;
+
+			//parent_1.rotation.x += 0.01;
+			
+			//parent.rotation.x += 0.01;
+			
+			if(planes[1].rotation.x>0 && !haveRotated)
+			{
+				window.requestAnimationFrame(animate);
+				planes[1].rotation.x -= stepRot;
+				planes[2].rotation.x += stepRot;
+				planes[3].rotation.x += stepRot*2;
+				var x = planes[2].position.x,
+					y = planes[2].position.y + size * Math.cos(planes[2].rotation.x),
+					z = planes[2].position.z + size * Math.sin(planes[2].rotation.x);
+				planes[3].position.set(x,y,z);
+				planes[4].rotation.y -= stepRot;
+				planes[5].rotation.y += stepRot; 
+			}
+			
+			else if(planes[1].rotation.x<Math.PI/2 && haveRotated)
+			{
+				window.requestAnimationFrame(animate);
+				planes[1].rotation.x += stepRot;
+				planes[2].rotation.x -= stepRot;
+				planes[3].rotation.x -= stepRot*2;
+				var x = planes[2].position.x,
+					y = planes[2].position.y + size * Math.cos(planes[2].rotation.x),
+					z = planes[2].position.z + size * Math.sin(planes[2].rotation.x);
+				planes[3].position.set(x,y,z);
+				planes[4].rotation.y += stepRot;
+				planes[5].rotation.y -= stepRot;
+			}
+			
+			IsRotating();
+			IsBtnDisabled();
+			
+			renderer.render( scene, camera );
+		};
+		
+		var btn = document.getElementById("click");
+		//animate();
+		
+		function OpenOrClose()
+		{
+			IsRotated();
+			animate();
+		}
+		
+		function IsRotated()
+		{
+			if(planes[1].rotation.x<=0)
+			{
+				haveRotated = true;
+			}
+			
+			else
+			{
+				haveRotated = false;
+			}
+		}
+		
+		function IsBtnDisabled()
+		{
+			if(IsRotating())
+			{
+				btn.disabled = true;
+			}
+			
+			else
+			{
+				btn.disabled = false;
+			}
+			
+			return btn.disabled;
+		}
+		
+		function IsRotating()
+		{
+			if(planes[1].rotation.x>0 && planes[1].rotation.x<Math.PI/2)
+			{
+				isRotating = true;
+			}
+			else
+			{
+				isRotating = false;
+			}
+			
+			return isRotating;
+		}
+		
+		btn.onclick = OpenOrClose;
+		
+		function createPlanes()
+		{
+			var plane = new THREE.PlaneBufferGeometry(2,2);
+			var planeMaterial = new THREE.MeshPhongMaterial({
+				color: 0x336699,
+				shininess: 15,
+				shading:THREE.FlatShading,
+				side:THREE.DoubleSide,
+				transparent:true,
+				opacity:0.8
+			});
+			
+			var p = [{//back
+					x:-size/2,
+					y:-size/2,
+					z:-size/2,
+					rx:0,
+					ry:0
+				},
+				{//top
+					x:-size/2,
+					y:size/2,
+					z:-size/2,
+					rx:Math.PI/2,
+					ry:0
+				},
+				{//bottom
+					x:-size/2,
+					y:-size/2,
+					z:-size/2,
+					rx:Math.PI/2,
+					ry:0
+				},
+				{//front
+					x:-size/2,
+					y:-size/2,
+					z:size/2,
+					rx:0,
+					ry:0
+				},
+				{//left
+					x:-size/2,
+					y:-size/2,
+					z:-size/2,
+					rx:0,
+					ry:-Math.PI/2
+				},
+				{//right
+					x:size/2,
+					y:-size/2,
+					z:-size/2,
+					rx:0,
+					ry:-Math.PI/2
+				}];
+				
+				for(var i=0; i<6; i++)
+				{
+					var tempPlane = new THREE.Mesh(plane,planeMaterial);
+					tempPlane.position.set(size/2,size/2,0);
+					var edges = new THREE.EdgesGeometry( plane );
+					var line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xffffff } ) );
+					line.position.set(size/2,size/2,0);
+					var tempObject = new THREE.Object3D();
+					tempObject.add(tempPlane);
+					tempObject.add(line);
+					tempObject.position.set(p[i].x,p[i].y,p[i].z);
+					tempObject.rotation.x = p[i].rx;
+					tempObject.rotation.y = p[i].ry;
+					parent.add(tempObject);
+					planes.push(tempObject);
+				}
+		}
+		
+		
+		
+	</script>
+</body>
+</html>
